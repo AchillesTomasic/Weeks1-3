@@ -620,8 +620,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e7d80f60c2a6b4caad4bdbc7952e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duck: {x: 0, y: 0, z: 0}
-  distanceToActive: 0
+  cam: {fileID: 1570090101}
+  duck: {fileID: 1037448554}
+  distanceToActive: 1
+  countdown: 0
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0019264221
+      value: 0.99523926
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.49922693
+      value: 0.036561012
+      inSlope: -0.30786335
+      outSlope: -0.30786335
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!212 &1037448553
 SpriteRenderer:
   m_ObjectHideFlags: 0
