@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Mover : MonoBehaviour
@@ -7,11 +8,13 @@ public class Mover : MonoBehaviour
     public float speed;
     public float speedy;
     public float accX;
-    public float xMax;
-    public float xMin;
+    public float xMax = Screen.width;
+    public float xMin = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        xMax = Screen.width;
+        xMin = 0;
     }
 
     // Update is called once per frame
@@ -28,7 +31,6 @@ public class Mover : MonoBehaviour
         //Screen.height;
         //gameCamera.WorldToScreenPoint(//somerandomvector);
         Vector3 screenTransformPosition = gameCamera.WorldToScreenPoint(transform.position);
-        xMax = Screen.width;
 
         flipper(screenTransformPosition);
     }
@@ -38,12 +40,12 @@ public class Mover : MonoBehaviour
         if(pos.x > xMax )
         {
             
-            accX = -0.1f;
+            accX = -1f;
         }
         if (pos.x < xMin)
         {
             
-            accX = 0.1f;
+            accX = 1f;
         }
 
         if (speed > maxSpeed) { speed = maxSpeed;}
