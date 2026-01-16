@@ -40,10 +40,8 @@ public class RollOver : MonoBehaviour
 
         // timer stuff
         if (timerIsRunning)
-        {
-            
+        {   
                 countdown += Time.deltaTime;
-            
         }
         else
         {
