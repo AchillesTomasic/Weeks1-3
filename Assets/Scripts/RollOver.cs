@@ -27,7 +27,7 @@ public class RollOver : MonoBehaviour
         Vector3 mouseInWorld = cam.ScreenToWorldPoint(mousePos); // sets to world from the screen
         mouseInWorld.z = 0; // sets in the same layer as everything else
         float dist = Vector3.Distance(transform.position, mouseInWorld);
-        print(dist);
+        
         if (dist < distanceToActive)
         {
             timerIsRunning = true;
