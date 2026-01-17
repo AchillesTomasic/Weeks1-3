@@ -19,7 +19,7 @@ public class Teleport : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        print(timer);
+        
         teleport();
         bouncyBall();
     }
