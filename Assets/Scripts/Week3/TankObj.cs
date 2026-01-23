@@ -35,10 +35,12 @@ public class TankObj : MonoBehaviour
             pos.x -= posSpeed * Time.deltaTime;
         }
         
-        transform.position = pos;
 
+        Vector3 worldPos = cam.ScreenToWorldPoint(transform.position);
+        worldPos.z = 0;
         
-
+        Mathf.Clamp(pos.x, 0, Screen.width);
+        transform.position = pos;
 
     }
     void gun()
