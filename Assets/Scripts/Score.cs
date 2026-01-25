@@ -32,7 +32,7 @@ public class Score : MonoBehaviour
             }
             else
             {
-                setOffScreen(j);// sets non-active numbers off screen
+                numbers[j].position = new Vector3(-80,40,0);// sets positions of non active numbers
                 
             }
         }
@@ -42,20 +42,14 @@ public class Score : MonoBehaviour
             // checks if the value of savescore is equal to the current number
             if(saveScore[1] == j - 10)
             {
-
                 numbers[j].position = new Vector3(6.8f, 4,0); // sets the position for the active number
             }
             else
             {
-                setOffScreen(j);// sets non-active numbers off screen
+                numbers[j].position = new Vector3(-80,40,0);// sets positions of non active numbers
             }
         }
   
-    }
-    // funciton sets the non used score values off screen
-    void setOffScreen(int currNum)
-    {
-        numbers[currNum].position = new Vector3(-80,40,0);// sets positions of non active numbers
     }
     // grabs the number at each placement in the score value
     void findScoreAtInstance()

@@ -18,6 +18,7 @@ public class NoteMovement : MonoBehaviour
     public Transform playerObject; // character objects position
     public float moveSpeed; // speed of the notes lerp movement
     public float MaxResetTime; // maximum timer for the reset position function
+    public float spawnDistance;
     // variables for player damage // 
     public float damageRadius; // damage radius of the player
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -45,13 +46,31 @@ public class NoteMovement : MonoBehaviour
        // changes position of note and resets note timer
        if(noteTimers[posInTimerList].timer > MaxResetTime)
        {
-        Vector3 notePos = new Vector3(Random.Range(0,Screen.width),Random.Range(0,Screen.height),0); // chooses a new random position
+        Vector3 notePos = positionSelector();
         Vector3 worldNotePos = camera.ScreenToWorldPoint(notePos);
         noteTran.position = worldNotePos; //sets new not position to this transforms position
         ActiveBounce = true; // activates the bool for the players bounce
         scoreScript.scoreValue += 1; //  adds to the players score
         noteTimers[posInTimerList].timer = 0; // sets the time to new value
        }
+    }
+    // selects a random position on the boarder of the screen, then returns the value
+    Vector3 positionSelector(){
+        int corner = Random.Range(0,3); // selects one of the three corners to spawn the note within
+        // left corner of the screen
+        if(corner == 0)
+        {
+            return new Vector3(-spawnDistance,Random.Range(0,Screen.height),0); // chooses a new random position on the left of screen
+        }
+        // top corner of screen
+        if(corner == 1)
+        {
+            return new Vector3(Random.Range(0,Screen.width),Screen.height + spawnDistance,0); // chooses a new random position on top of screen
+        }
+        // right of the screen
+        else{
+            return new Vector3(Screen.width + spawnDistance,Random.Range(0,Screen.height),0); // chooses a new random position on the right of screen
+        }
     }
     // resets the position of the mouse
     void mouseOverNote(Transform noteTran,int posInTimerList)
