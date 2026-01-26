@@ -64,7 +64,7 @@ public class NoteMovement : MonoBehaviour
        }
     }
     // selects a random position on the boarder of the screen, then returns the value
-    Vector3 positionSelector(){
+    public Vector3 positionSelector(){
         int corner = Random.Range(0,3); // selects one of the three corners to spawn the note within
         // left corner of the screen
         if(corner == 0)
@@ -133,6 +133,7 @@ public class NoteMovement : MonoBehaviour
         // checks if the note is within damage radisu
         if(distanceBetweenPlayer < damageRadius)
         {
+            ActiveBounce = true; // activates the bool for the players bounce
             Vector3 notePos = positionSelector(); // sets vector3 to a random boarder position
             Vector3 worldNotePos = camera.ScreenToWorldPoint(notePos); // allows equation to be preformed in worldspace
             noteTran.position = worldNotePos; //sets new not position to this transforms position

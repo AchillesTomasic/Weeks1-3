@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class TitleScreen : MonoBehaviour
 {
+    public NoteMovement noteScript; // script for the note objects
     public Transform playButton; // play button game object
     public Transform effectsOnPlayButton; // play button effect
     public Transform transition; // transition effect
@@ -22,7 +23,11 @@ public class TitleScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transitionTimer < 1.5f){
+        if(transitionTimer < 0.7f)
+        {
+            moveNotesOffScreen(); // keeps the notes from appearing on screen
+        }
+        if(transitionTimer < 1.1f){
         mouseOverPlay(); // checks if the mouse is over the play button
         RemovePlayScreen();// moves the title screen when the timer is up
         playButtonEffects(); // changes the scale of the effect alongside the timer
@@ -73,5 +78,16 @@ public class TitleScreen : MonoBehaviour
     {
         float transitionScale = transitionCurve.Evaluate(transitionTimer); // variable for the transition curve
         transition.localScale = new Vector3(transitionScale * 15,transitionScale * 15,0); // transtiion scale
+    }
+    // moves the notes onto screen
+    void moveNotesOffScreen(){
+        // resets the notes off screen while in the menu
+        foreach(Transform note in noteScript.noteObj)
+        {
+            Vector3 notePosSelect = noteScript.positionSelector(); //sets new not position to this transforms position
+            Vector3 worldNotePos = camera.ScreenToWorldPoint(notePosSelect); // allows equation to be preformed in worldspace
+            worldNotePos.z = 0; // makes sure its on the same plane as the mouse
+            note.position = worldNotePos;
+        }
     }
 }

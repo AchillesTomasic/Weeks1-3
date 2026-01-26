@@ -921,6 +921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b866b453aaafd51499138a7bf5174645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noteScript: {fileID: 746356559}
   playButton: {fileID: 1849889547}
   effectsOnPlayButton: {fileID: 1307651357}
   transition: {fileID: 1822650118}
