@@ -4,8 +4,13 @@ using System.Collections.Generic;
 
 public class NoteMovement : MonoBehaviour
 {
+    // score variables
+    public float[] saveScore = new float[2];
+    public int scoreValue; // current score of the player
+    public List<Transform> numbers = new List<Transform>(); //  list of all the number objects avalible
+
     //changes the score value
-    public Score scoreScript; // obtains the score script
+    //public Score scoreScript; // obtains the score script
     public Camera camera;
     // manages the character bounce // 
     public AnimationCurve characterBounce; // animation curve for the players small bounce
@@ -15,7 +20,7 @@ public class NoteMovement : MonoBehaviour
     public List<Transform> noteObj = new List<Transform>();// holds the note objects
     public List<Transform> effectObject = new List<Transform>();// holds the effect objects
     public AnimationCurve effectMovements; // animation curve for the note effects
-    public List<NoteTimer> noteTimers = new List<NoteTimer>();// holds the note times
+    public List<float> noteTimers = new List<float>();// holds the note times
     // transforms for the different character game objects
     public List<Transform> charObj = new List<Transform>(); // holds the different character game objects
     public bool swapActive = false; // actuvates when the player hits a note
@@ -47,20 +52,23 @@ public class NoteMovement : MonoBehaviour
         }
         charBounce(); // preforms the animation bounce for the character
         charChanger(); // preforms the swapping character sprite system.
+        // score setting variables //
+        findScoreAtInstance();// obtains the current saveScoreValue
+        setScoreAtPos();// sets all of the score position on screen
     }
     // change the position of the notes
     void changeNotePos(Transform noteTran, int posInTimerList)
     {
        // changes position of note and resets note timer
-       if(noteTimers[posInTimerList].timer > MaxResetTime)
+       if(noteTimers[posInTimerList] > MaxResetTime)
        {
         Vector3 notePos = positionSelector();// sets vector3 to a random boarder position
         Vector3 worldNotePos = camera.ScreenToWorldPoint(notePos); // allows equation to be preformed in worldspace
         noteTran.position = worldNotePos; //sets new not position to this transforms position
         ActiveBounce = true; // activates the bool for the players bounce
-        scoreScript.scoreValue += 1; //  adds to the players score
+        scoreValue += 1; //  adds to the players score
         swapActive = true; // activates the character swap gameObject
-        noteTimers[posInTimerList].timer = 0; // sets the time to new value
+        noteTimers[posInTimerList] = 0; // sets the time to new value
        }
     }
     // selects a random position on the boarder of the screen, then returns the value
@@ -91,12 +99,12 @@ public class NoteMovement : MonoBehaviour
         // checks if the mouse is inside the note
         if(noteToMouseDist < noteTran.localScale.x)
         {
-            noteTimers[posInTimerList].timer += Time.deltaTime; // adds to the note timer
+            noteTimers[posInTimerList] += Time.deltaTime; // adds to the note timer
         }
         // checks if the mouse is outside the note and it is still running
-        if(noteToMouseDist > noteTran.localScale.x && noteTimers[posInTimerList].timer > 0)
+        if(noteToMouseDist > noteTran.localScale.x && noteTimers[posInTimerList] > 0)
         {
-            noteTimers[posInTimerList].timer -= Time.deltaTime; // minus to the note timer
+            noteTimers[posInTimerList] -= Time.deltaTime; // minus to the note timer
         }
     }
     // moves the position of the note
@@ -138,7 +146,7 @@ public class NoteMovement : MonoBehaviour
             Vector3 worldNotePos = camera.ScreenToWorldPoint(notePos); // allows equation to be preformed in worldspace
             noteTran.position = worldNotePos; //sets new not position to this transforms position
             damageActive = true; // activates the character swap gameObject
-            scoreScript.scoreValue = 0; // resets the players score to 0
+            scoreValue = 0; // resets the players score to 0
         }
     }
     void charChanger()
@@ -170,9 +178,52 @@ public class NoteMovement : MonoBehaviour
             damageActive = false; // deactives the damage variable
         }
     }
+
     // changes the scale of the effects
     void effectsScale(Transform eff,int timerEffect){
-        float effectScale = effectMovements.Evaluate(noteTimers[timerEffect].timer); //changes the scale of the effects object
+        float effectScale = effectMovements.Evaluate(noteTimers[timerEffect]); //changes the scale of the effects object
         eff.localScale = new Vector3(effectScale ,effectScale ,0); // changes the scale of the effects object
     }
+
+    // score system functions //
+    void setScoreAtPos()
+    {
+        // loop used to set the score tiles for space 1
+        for(int j = 0; j <= 9; j++)
+        {
+            // checks if the value of savescore is equal to the current number
+            if(saveScore[0] == j)
+            {
+                numbers[j].position = new Vector3(8, 4,0); // sets the position for the active number
+                
+            }
+            else
+            {
+                numbers[j].position = new Vector3(-80,40,0);// sets positions of non active numbers
+                
+            }
+        }
+        // loop used to set the score tiles for space 2
+        for(int j = 10; j <= 19; j++)
+        {
+            // checks if the value of savescore is equal to the current number
+            if(saveScore[1] == j - 10)
+            {
+                numbers[j].position = new Vector3(6.8f, 4,0); // sets the position for the active number
+            }
+            else
+            {
+                numbers[j].position = new Vector3(-80,40,0);// sets positions of non active numbers
+            }
+        }
+  
+    }
+    // grabs the number at each placement in the score value
+    void findScoreAtInstance()
+    {
+        saveScore[0] = scoreValue % 10; // value of smallest number
+        saveScore[1] = scoreValue/ 10 % 10; // value of the number in front
+    }
 }
+
+

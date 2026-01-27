@@ -129,7 +129,6 @@ GameObject:
   m_Component:
   - component: {fileID: 13750951}
   - component: {fileID: 13750950}
-  - component: {fileID: 13750952}
   m_Layer: 0
   m_Name: Note
   m_TagString: Untagged
@@ -208,19 +207,6 @@ Transform:
   - {fileID: 454076985}
   m_Father: {fileID: 489104693}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &13750952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 13750948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5f9aa92af0c8694394002b472787424, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timer: 0
 --- !u!1 &58305032
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,75 +418,6 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3.4907568, y: 1.3304105, z: -0.031734206}
   m_LocalScale: {x: 6, y: 6, z: 6}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 489104693}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &258171631
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 258171633}
-  - component: {fileID: 258171632}
-  m_Layer: 0
-  m_Name: ScoreHolder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &258171632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 258171631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4be6ae29c41ee724d9c4ddb7d5b8b57a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveScore:
-  - 0
-  - 0
-  scoreValue: 0
-  numbers:
-  - {fileID: 659167628}
-  - {fileID: 1715127868}
-  - {fileID: 2022956888}
-  - {fileID: 467182264}
-  - {fileID: 1588664788}
-  - {fileID: 1358547408}
-  - {fileID: 911916622}
-  - {fileID: 709749807}
-  - {fileID: 1030124560}
-  - {fileID: 1353112702}
-  - {fileID: 274996591}
-  - {fileID: 476786217}
-  - {fileID: 1353745642}
-  - {fileID: 1634335759}
-  - {fileID: 1268310889}
-  - {fileID: 699184993}
-  - {fileID: 1083063495}
-  - {fileID: 640781657}
-  - {fileID: 1022085035}
-  - {fileID: 742957168}
---- !u!4 &258171633
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 258171631}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.3571599, y: 4.402091, z: -0.0025440753}
-  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 489104693}
@@ -887,7 +804,6 @@ Transform:
   - {fileID: 1533602935}
   - {fileID: 71060661}
   - {fileID: 1097299893}
-  - {fileID: 258171633}
   - {fileID: 217972379}
   - {fileID: 746356560}
   m_Father: {fileID: 0}
@@ -921,7 +837,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b866b453aaafd51499138a7bf5174645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteScript: {fileID: 746356559}
   playButton: {fileID: 1849889547}
   effectsOnPlayButton: {fileID: 1307651357}
   transition: {fileID: 1822650118}
@@ -1575,7 +1490,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c00710324286e3849be03cc0a72a6f40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreScript: {fileID: 258171632}
+  saveScore:
+  - 0
+  - 0
+  scoreValue: 0
+  numbers:
+  - {fileID: 659167628}
+  - {fileID: 1715127868}
+  - {fileID: 2022956888}
+  - {fileID: 467182264}
+  - {fileID: 1588664788}
+  - {fileID: 1358547408}
+  - {fileID: 911916622}
+  - {fileID: 709749807}
+  - {fileID: 1030124560}
+  - {fileID: 1353112702}
+  - {fileID: 274996591}
+  - {fileID: 476786217}
+  - {fileID: 1353745642}
+  - {fileID: 1634335759}
+  - {fileID: 1268310889}
+  - {fileID: 699184993}
+  - {fileID: 1083063495}
+  - {fileID: 640781657}
+  - {fileID: 1022085035}
+  - {fileID: 742957168}
   camera: {fileID: 1593283268}
   characterBounce:
     serializedVersion: 2
@@ -1670,8 +1609,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   noteTimers:
-  - {fileID: 13750952}
-  - {fileID: 1144582663}
+  - 0
+  - 0
   charObj:
   - {fileID: 1809008481}
   - {fileID: 572118687}
@@ -2179,7 +2118,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1144582662}
   - component: {fileID: 1144582661}
-  - component: {fileID: 1144582663}
   m_Layer: 0
   m_Name: Note2
   m_TagString: Untagged
@@ -2258,19 +2196,6 @@ Transform:
   - {fileID: 2093916168}
   m_Father: {fileID: 489104693}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1144582663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1144582660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5f9aa92af0c8694394002b472787424, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timer: 0
 --- !u!1 &1268310888
 GameObject:
   m_ObjectHideFlags: 0
