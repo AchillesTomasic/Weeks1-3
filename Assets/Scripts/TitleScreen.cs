@@ -7,6 +7,7 @@ public class TitleScreen : MonoBehaviour
     public Transform playButton; // play button game object
     public Transform effectsOnPlayButton; // play button effect
     public Transform transition; // transition effect
+    public Vector3 InitalButtonScale; // saves the button inital size
     public Camera camera; // obtains the screens camera component
     public float playButtonMaxTimer; // maximum timer for the play button
     public float playButtonTimer; // timer for the play button
@@ -18,6 +19,7 @@ public class TitleScreen : MonoBehaviour
     void Start()
     {
         transform.position = new Vector3(0,0,0); //sets the title screen on screen
+        InitalButtonScale = effectsOnPlayButton.localScale / 2; // sets the intial button scale to the effects scale
     }
 
     // Update is called once per frame
@@ -52,7 +54,7 @@ public class TitleScreen : MonoBehaviour
     void playButtonEffects()
     {
         float effectScale = playbuttonHoldInditcator.Evaluate(playButtonTimer); //  value of animation curve for effect scale
-        effectsOnPlayButton.localScale = new Vector3(7f + effectScale,1.5f + effectScale,0); // changes the scale of the button effect
+        effectsOnPlayButton.localScale = new Vector3(InitalButtonScale.x + effectScale,InitalButtonScale.y + effectScale,0); // changes the scale of the button effect
     }
     // moves the play screen off screen
     void RemovePlayScreen()

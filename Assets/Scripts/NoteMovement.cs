@@ -182,7 +182,7 @@ public class NoteMovement : MonoBehaviour
     // changes the scale of the effects
     void effectsScale(Transform eff,int timerEffect){
         float effectScale = effectMovements.Evaluate(noteTimers[timerEffect]); //changes the scale of the effects object
-        eff.localScale = new Vector3(effectScale ,effectScale ,0); // changes the scale of the effects object
+        eff.localScale = new Vector3(effectScale ,effectScale,0); // changes the scale of the effects object
     }
 
     // score system functions //
@@ -209,7 +209,7 @@ public class NoteMovement : MonoBehaviour
             // checks if the value of savescore is equal to the current number
             if(saveScore[1] == j - 10)
             {
-                numbers[j].position = new Vector3(6.8f, 4,0); // sets the position for the active number
+                numbers[j].position = new Vector3(7.1f, 4,0); // sets the position for the active number
             }
             else
             {
